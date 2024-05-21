@@ -133,6 +133,13 @@ def progress_bar():
         total += 1
 
 
+def get_sign_texts(path):
+    with open (path, "r") as txt:
+        content = txt.read()
+
+    return content
+
+
 @app.callback(invoke_without_command=True)
 def typer_callback(
     ctx: Context,
@@ -172,13 +179,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Março[/] a [bold green]20[/] de [bold green]abril[/] é de [bold red]Áries[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Áries[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Áries[/]: [i]É Representado pelo elemento fogo e pela cabeça de carneiro como símbolo, o signo de áries "\
-                "é conhecido pelo senso de liderança, autonomia e pioneirismo, assim como pela sua coragem e autoconfiança. Outra "\
-                "característica associada ao primeiro signo do zodíaco é a impulsividade, muitas vezes relacionada a um perfil mais "\
-                "'explosivo' e impaciente.\n"
-                )
+            rprint(get_sign_texts("texts/0.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -188,15 +189,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Abril[/] a [bold green]20[/] de [bold green]Maio[/] é de [bold red]Touro[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Touro[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Touro[/]: [i]Os taurinos têm a terra como elemento e a cabeça de um touro"
-                 "simbolizando o signo, normalmente representada por um círculo com dois chifres. Eles são considerados pessoas leais," 
-                 "protetoras e determinadas. Além disso, o signo é conhecido por gostar de aproveitar os prazeres da vida, como comer e" 
-                 "dormir, por exemplo — por isso é associado à preguiça e à gula. Também podem apresentar a teimosia como um aspecto forte" 
-                 "de personalidade."
-                )
-            
+            rprint(get_sign_texts("texts/1.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -206,14 +199,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Maio[/] a [bold green]20[/] de [bold green]Junho[/] é de [bold red]Gêmeos[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Gêmeos[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Gêmeos[/]: [i]O signo de gêmeos é comunicativo, sociável e inteligente. Regido"
-                  "pelo elemento ar e representado pelo número 2 em algarismos romanos, esse é um signo adaptável e tem uma energia ligada"
-                  "ao mental. Geminianos também são conhecidos pela curiosidade e vontade de aprender, o que se relaciona a essa energia" 
-                  "mental — que também pode despertar impaciência, ansiedade e superficialidade."
-                )
-            
+            rprint(get_sign_texts("texts/2.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -223,15 +209,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Junho[/] a [bold green]22[/] de [bold green]Julho[/] é de [bold red]Câncer[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Câncer[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Câncer[/]: [i]O significado dos signos se relaciona com o símbolo que os"
-                "representa e com câncer isso não é diferente. Representado por um caranguejo, esse signo pode ser mais reservado e "
-                "cauteloso, protegendo suas emoções — assim como o caranguejo se protege em sua casca. Além disso, os cancerianos, regidos"
-                "pelo elemento água, são conhecidos pela sensibilidade e por serem carinhosos, assim como pela conexão com a família e com"
-                "o passado. Por outro lado, tem como desafio não alimentar mágoas."
-                )
-            
+            rprint(get_sign_texts("texts/3.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -241,14 +219,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Julho[/] a [bold green]22[/] de [bold green]Agosto[/] é de [bold red]Leão[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Leão[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Leão[/]: [i]Representados por um leão e regidos pelo elemento fogo, os "
-                "leoninos apresentam como características a criatividade, o carisma e a generosidade. Esse signo também é associado à "
-                "coragem, determinação e a autoconfiança — que pode ser relacionada a uma arrogância em alguns momentos. A individualidade "
-                "também é uma característica que pode atenuar o senso de egocentrismo."
-                )
-            
+            rprint(get_sign_texts("texts/4.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -258,15 +229,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Agosto[/] a [bold green]22[/] de [bold green]Setembro[/] é de [bold red]Virgem[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Virgem[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Virgem[/]: [i]Virgem é um signo de terra, representado pela letra “M” ou "
-                "pela imagem de uma mulher. Conhecidos pelo senso de organização, os virginianos são determinados, trabalhadores e "
-                "disciplinados. Ao avaliar o significado dos signos, características como a capacidade analítica e detalhista — muitas "
-                "vezes relacionadas ao perfeccionismo e ao hipercriticismo — também são relacionados ao signo de virgem, assim como a "
-                "praticidade e o altruísmo."
-                )
-            
+            rprint(get_sign_texts("texts/5.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -276,14 +239,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Setembro[/] a [bold green]22[/] de [bold green]Outubro[/] é de [bold red]Libra[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Libra[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Libra[/]: [i]Representado pelo símbolo da balança, os librianos são "
-                "conhecidos pelo senso de justiça e pela diplomacia, assim como pela harmonia e a busca pelo equilíbrio. O signo de "
-                "libra é regido pelo elemento ar e tem como características associadas a ele a sociabilidade, inteligência e a capacidade "
-                "de apreciar a beleza das coisas. Tem como desafio aprender a dizer não."
-                )
-            
+            rprint(get_sign_texts("texts/6.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -293,14 +249,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Outubro[/] a [bold green]21[/] de [bold green]Novembro[/] é de [bold red]Escorpião[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Escorpião[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Escorpião[/]: [i]O signo de escorpião é representado pelo animal de mesmo "
-                "nome e tem o elemento de água como seu regente. É conhecido pela intensidade e profundidade emocional, assim como pela "
-                "persistência e o carisma. Além disso, o signo está associado a um interesse por temas esotéricos e mais profundos ou "
-                "misteriosos. Os escorpianos também têm como características a capacidade de transformação."
-                )
-            
+            rprint(get_sign_texts("texts/7.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -310,14 +259,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]22[/] de [bold green]Novembro[/] a [bold green]21[/] de [bold green]Dezembro[/] é de [bold red]Sagitário[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Sagitário[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Sagitário[/]: [i]O símbolo do Sagitário é uma flecha, associada ao "
-                "centauro, que também pode aparecer em algumas representações do signo. Ligado ao elemento fogo, é um signo que tem como "
-                "características o senso de aventura, exploração e sabedoria. Sagitarianos também prezam pela autonomia, a liberdade e "
-                "pela espontaneidade. Além disso, é um signo relacionado à impulsividade."
-                )
-            
+            rprint(get_sign_texts("texts/8.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -327,14 +269,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]22[/] de [bold green]Dezembro[/] a [bold green]20[/] de [bold green]Janeiro[/] é de [bold red]Capricórnio[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Capricórnio[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Capricórnio[/]: [i]Regido pelo elemento terra, Capricórnio é representado "
-                "pela cabra marinha e é um signo conhecido pela determinação, responsabilidade e pelo pragmatismo. Os capricornianos também "
-                "são trabalhadores, ambiciosos e práticos. Outras características são a busca pela estabilidade, segurança e a capacidade "
-                "visionária. Vale se atentar em aprender a ser menos solitário."
-                )
-            
+            rprint(get_sign_texts("texts/9.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -344,14 +279,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Janeiro[/] a [bold green]18[/] de [bold green]Fevereiro[/] é de [bold red]Aquário[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Aquário[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Aquário[/]: [i]Assim como o significado dos signos de ar, como Gêmeos, "
-                "aquarianos também tem uma energia mais mental, que confere algumas características relacionadas ao signo, como capacidade "
-                "analítica, lógica e objetiva. Representado por duas ondas, esse é um signo conhecido pela originalidade, individualidade "
-                "e sociabilidade. Além disso, Aquário pode ser relacionado a rebeldia, a inovação e a mudanças."
-                )
-            
+            rprint(get_sign_texts("texts/10.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
@@ -361,14 +289,7 @@ def init():
                 f"Quem nasce entre o dia [bold green]19[/] de [bold green]Fevereiro[/] a [bold green]20[/] de [bold green]Março[/] é de [bold red]Peixes[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Peixes[/].\n"
                 )
-
-            rprint(
-                f"[b]As características do signo de[/] [bold red]Peixes[/]: [i]Signo de elemento água, Peixes tem como características a "
-                "sensibilidade, criatividade e a empatia. Representado por dois peixes, o último signo do zodíaco é conhecido por ser "
-                "sonhador, intuitivo e conectado a emoções. Esse signo também é conhecido pela relação com a arte, capacidade de adaptação "
-                "e conexão com a espiritualidade."
-                )
-            
+            rprint(get_sign_texts("texts/11.txt"))
             horoscope = get_horoscope_today(sign)
             translation = en_to_pt.translate(horoscope)
 
