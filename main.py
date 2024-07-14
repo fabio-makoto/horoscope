@@ -9,6 +9,7 @@ import requests
 import os
 from deep_translator import GoogleTranslator
 import time
+import db_connection
 
 
 app = Typer()
@@ -67,53 +68,40 @@ def validate_day(day: str, month: str):
 
 def get_sign(day: int, month: int):
     if month == 3 and day >= 21 or month == 4 and day <= 20:
-        # print("Áries")
-        sign = 1
-        return sign
+        return 'aries'
+
     elif month == 4 and day >= 21 or month == 5 and day <= 20:
-        # print("Touro")
-        sign = 2
-        return sign
+        return 'taurus'
+
     elif month == 5 and day >= 21 or month == 6 and day <= 20:
-        # print("Gêmeos")
-        sign = 3
-        return sign
+        return 'gemini'
+
     elif month == 6 and day >= 21 or month == 7 and day <= 22:
-        # print("Câncer")
-        sign = 4
-        return sign
+        return 'cancer'
+
     elif month == 7 and day >= 23 or month == 8 and day <= 22:
-        # print("Leão")
-        sign = 5
-        return sign
+        return 'leo'
+
     elif month == 8 and day >= 23 or month == 9 and day <= 22:
-        # print("Virgem")
-        sign = 6
-        return sign
+        return 'virgo'
+
     elif month == 9 and day >= 23 or month == 10 and day <= 22:
-        # print("Libra")
-        sign = 7
-        return sign
+        return 'libra'
+
     elif month == 10 and day >= 23 or month == 11 and day <= 21:
-        # print("Escorpião")
-        sign = 8
-        return sign
+        return 'scorpio'
+
     elif month == 11 and day >= 22 or month == 12 and day <= 21:
-        # print("Sagitário")
-        sign = 9
-        return sign
+        return 'sagittarius'
+
     elif month == 12 and day >= 22 or month == 1 and day <= 20:
-        # print("Capricórnio")
-        sign = 10
-        return sign
+        return 'capricorn'
+
     elif month == 1 and day >= 21 or month == 2 and day <= 18:
-        # print("Aquário")
-        sign = 11
-        return sign
+        return 'aquarius'
+
     elif month == 2 and day >= 19 or month == 3 and day <= 20:
-        # print("Peixes")
-        sign = 12
-        return sign
+        return 'pisces'
 
 
 def get_horoscope_today(sign: int):
@@ -131,13 +119,6 @@ def progress_bar():
     for value in track(range(100), description="Processando..."):
         time.sleep(0.03)
         total += 1
-
-
-def get_sign_texts(path):
-    with open (path, "r") as txt:
-        content = txt.read()
-
-    return content
 
 
 @app.callback(invoke_without_command=True)
@@ -174,123 +155,159 @@ def init():
 
     os.system("clear")
     match sign:
-        case 1:
+        case 'aries':
             rprint(
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Março[/] a [bold green]20[/] de [bold green]abril[/] é de [bold red]Áries[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Áries[/].\n"
                 )
-            rprint(get_sign_texts("texts/0.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+
+            horoscope = get_horoscope_today(1)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 2:
+        case 'taurus':
             rprint(
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Abril[/] a [bold green]20[/] de [bold green]Maio[/] é de [bold red]Touro[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Touro[/].\n"
                 )
-            rprint(get_sign_texts("texts/1.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+
+            horoscope = get_horoscope_today(2)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 3:
+        case 'gemini':
             rprint(
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Maio[/] a [bold green]20[/] de [bold green]Junho[/] é de [bold red]Gêmeos[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Gêmeos[/].\n"
                 )
-            rprint(get_sign_texts("texts/2.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(3)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 4:
+        case 'cancer':
             rprint(
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Junho[/] a [bold green]22[/] de [bold green]Julho[/] é de [bold red]Câncer[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Câncer[/].\n"
                 )
-            rprint(get_sign_texts("texts/3.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+
+            horoscope = get_horoscope_today(4)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 5:
+        case 'leo':
             rprint(
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Julho[/] a [bold green]22[/] de [bold green]Agosto[/] é de [bold red]Leão[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Leão[/].\n"
                 )
-            rprint(get_sign_texts("texts/4.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(5)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 6:
+        case 'virgo':
             rprint(
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Agosto[/] a [bold green]22[/] de [bold green]Setembro[/] é de [bold red]Virgem[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Virgem[/].\n"
                 )
-            rprint(get_sign_texts("texts/5.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(6)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 7:
+        case 'libra':
             rprint(
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Setembro[/] a [bold green]22[/] de [bold green]Outubro[/] é de [bold red]Libra[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Libra[/].\n"
                 )
-            rprint(get_sign_texts("texts/6.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(7)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 8:
+        case 'scorpio':
             rprint(
                 f"Quem nasce entre o dia [bold green]23[/] de [bold green]Outubro[/] a [bold green]21[/] de [bold green]Novembro[/] é de [bold red]Escorpião[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Escorpião[/].\n"
                 )
-            rprint(get_sign_texts("texts/7.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(8)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 9:
+        case 'sagittarius':
             rprint(
                 f"Quem nasce entre o dia [bold green]22[/] de [bold green]Novembro[/] a [bold green]21[/] de [bold green]Dezembro[/] é de [bold red]Sagitário[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Sagitário[/].\n"
                 )
-            rprint(get_sign_texts("texts/8.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(9)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 10:
+        case 'capricorn':
             rprint(
                 f"Quem nasce entre o dia [bold green]22[/] de [bold green]Dezembro[/] a [bold green]20[/] de [bold green]Janeiro[/] é de [bold red]Capricórnio[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Capricórnio[/].\n"
                 )
-            rprint(get_sign_texts("texts/9.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(10)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 11:
+        case 'aquarius':
             rprint(
                 f"Quem nasce entre o dia [bold green]21[/] de [bold green]Janeiro[/] a [bold green]18[/] de [bold green]Fevereiro[/] é de [bold red]Aquário[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Aquário[/].\n"
                 )
-            rprint(get_sign_texts("texts/10.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(11)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
-        case 12:
+        case 'pisces':
             rprint(
                 f"Quem nasce entre o dia [bold green]19[/] de [bold green]Fevereiro[/] a [bold green]20[/] de [bold green]Março[/] é de [bold red]Peixes[/].\n"
                 f"\nComo você nasceu no dia [bold green]{vday}[/] de [bold green]{months[vmonth-1]}[/] o seu signo é [bold red]Peixes[/].\n"
                 )
-            rprint(get_sign_texts("texts/11.txt"))
-            horoscope = get_horoscope_today(sign)
+            
+            text = db_connection.get_text(sign)
+            rprint(''.join(text))
+            
+            horoscope = get_horoscope_today(12)
             translation = en_to_pt.translate(horoscope)
 
             rprint(f"\n[i b]O seu horóscopo do dia.[/][i]\n{translation}\n")
